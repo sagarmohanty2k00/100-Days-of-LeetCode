@@ -52,7 +52,7 @@ int main() {
     cin >> size;
 
     vector<int> nums;
-    for (int i=0; i<n; i++) {
+    for (int i=0; i<size; i++) {
         int val;
         nums.push_back(val);
     }
