@@ -1,0 +1,30 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    pair<TreeNode*, int> helper(TreeNode* root) {
+        if (root == NULL) return {NULL, 0};
+        
+        auto lc = helper(root->left);
+        auto rc = helper(root->right);
+        
+        if (lc.second == rc.second) return {root, 1+lc.second};
+        if (lc.second > rc.second) return {lc.first, 1+lc.second};
+        
+        return {rc.first, 1+rc.second};
+    }
+    
+    TreeNode* lcaDeepestLeaves(TreeNode* root) {
+        pair<TreeNode*, int> ans = helper(root);
+        return ans.first;
+    }
+};
